@@ -17,6 +17,7 @@ module Caracal
         # constants
         const_set(:DEFAULT_STYLE_TYPE,       'paragraph')
         const_set(:DEFAULT_STYLE_COLOR,      '333333')
+        const_set(:DEFAULT_STYLE_BGCOLOR,    nil)
         const_set(:DEFAULT_STYLE_SIZE,       20)
         const_set(:DEFAULT_STYLE_BOLD,       false)
         const_set(:DEFAULT_STYLE_ITALIC,     false)
@@ -35,6 +36,7 @@ module Caracal
         attr_reader :style_type
         attr_reader :style_name
         attr_reader :style_color
+        attr_reader :style_bgcolor
         attr_reader :style_font
         attr_reader :style_size
         attr_reader :style_bold
@@ -63,6 +65,7 @@ module Caracal
           if (style_id == DEFAULT_STYLE_BASE)
             @style_default    ||= true
             @style_color      ||= DEFAULT_STYLE_COLOR
+            @style_bgcolor    ||= DEFAULT_STYLE_BGCOLOR
             @style_size       ||= DEFAULT_STYLE_SIZE
             @style_bold       ||= DEFAULT_STYLE_BOLD
             @style_italic     ||= DEFAULT_STYLE_ITALIC
@@ -97,7 +100,7 @@ module Caracal
         end
 
         # strings
-        [:id, :type, :name, :color, :font].each do |m|
+        [:id, :type, :name, :color, :bgcolor, :font].each do |m|
           define_method "#{ m }" do |value|
             instance_variable_set("@style_#{ m }", value.to_s)
           end
@@ -158,6 +161,7 @@ module Caracal
             :id,
             :name,
             :color,
+            :bgcolor,
             :font,
             :align,
             :indent_left,
