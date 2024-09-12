@@ -1,4 +1,4 @@
-# Caracal
+# Caracal (chab fork)
 
 This fork includes fixes and functionalities from pending PRs from the original project, to be able to use them while waiting for the PRs to be merged there.  
 Fork gem version = 1.7.2
