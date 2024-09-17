@@ -244,7 +244,7 @@ module Caracal
               end
               xml['w'].r do
                 xml['w'].instrText(
-                  { 'xml:space' => 'preserve' }, 
+                  { 'xml:space' => 'preserve' },
                   "  PAGEREF #{ bookmark[:ref] } \\h "
                 )
               end
@@ -486,7 +486,7 @@ module Caracal
         end
         bookmarks
       end
-      
+
       # Returns the name (reference) of the first bookmark in the given model
       # Wraps the model contents in a bookmark if necessary
       def bookmark_for(model)
@@ -519,7 +519,9 @@ module Caracal
           'w:top'    => document.page_margin_top,
           'w:bottom' => document.page_margin_bottom,
           'w:left'   => document.page_margin_left,
-          'w:right'  => document.page_margin_right
+          'w:right'  => document.page_margin_right,
+          'w:header' => 360,
+          'w:footer' => 360
         }
       end
 
