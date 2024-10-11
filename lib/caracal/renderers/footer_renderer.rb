@@ -35,6 +35,8 @@ module Caracal
                   end
                 end
               end
+
+              # page number
               xml['w'].r run_options do
                 xml['w'].rPr do
                   unless document.page_number_number_size.nil?
@@ -48,6 +50,39 @@ module Caracal
                 end
                 xml['w'].fldChar({ 'w:fldCharType' => 'end' })
               end
+
+              # page number total
+              if document.page_number_total_label
+                # label: e.g.  " on " for "x on y" or "/" for "x/y"
+                xml['w'].r run_options do
+                  xml['w'].rPr do
+                    xml['w'].rStyle({ 'w:val' => 'PageNumber' })
+                    unless document.page_number_label_size.nil?
+                      xml['w'].sz({ 'w:val'  => document.page_number_label_size })
+                    end
+                  end
+                  xml['w'].t({ 'xml:space' => 'preserve' }) do
+                    xml.text "#{ document.page_number_total_label } "
+                  end
+                end
+
+                # page total (NUMPAGES)
+                xml['w'].r run_options do
+                  xml['w'].rPr do
+                    unless document.page_number_number_size.nil?
+                      xml['w'].sz({ 'w:val'  => document.page_number_number_size })
+                      xml['w'].szCs({ 'w:val' => document.page_number_number_size })
+                    end
+                  end
+                  xml['w'].fldChar({ 'w:fldCharType' => 'begin' })
+                  xml['w'].instrText({ 'xml:space' => 'preserve' }) do
+                    xml.text 'NUMPAGES'
+                  end
+                  xml['w'].fldChar({ 'w:fldCharType' => 'end' })
+                end
+              end
+
+              #
               xml['w'].r run_options do
                 xml['w'].rPr do
                   xml['w'].rtl({ 'w:val' => '0' })

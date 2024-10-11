@@ -41,7 +41,7 @@ module Caracal
                 end
                 xml['w'].pgSz page_size_options
                 xml['w'].pgMar page_margin_options
-                xml['w'].titlePg title_page_options
+                xml['w'].titlePg title_page_options if title_page_options.present?
               end
 
             end
@@ -535,9 +535,11 @@ module Caracal
       end
 
       def title_page_options
-        {
-          'w:val' => "1" # no header on first page
-        }
+        if !document.page_header_footer_on_first_page
+          {
+            'w:val' => "1" # no header on first page
+          }
+        end
       end
 
     end

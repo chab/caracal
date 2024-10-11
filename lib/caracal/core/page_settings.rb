@@ -19,8 +19,9 @@ module Caracal
 
           # accessors
           attr_reader :page_width
-          attr_reader :page_orientation
           attr_reader :page_height
+          attr_reader :page_orientation
+          attr_reader :page_header_footer_on_first_page
           attr_reader :page_margin_top
           attr_reader :page_margin_bottom
           attr_reader :page_margin_left
@@ -61,6 +62,7 @@ module Caracal
               @page_width       = model.page_width
               @page_height      = model.page_height
               @page_orientation = model.page_orientation
+              @page_header_footer_on_first_page = model.page_header_footer_on_first_page
             else
               raise Caracal::Errors::InvalidModelError, 'page_size method requires non-zero :width and :height options.'
             end
