@@ -82,6 +82,24 @@ module Caracal
                 end
               end
 
+              # page info (second line
+              if document.page_number_info.present?
+                xml['w'].r run_options do
+                  xml['w'].br
+
+                  xml['w'].rPr do
+                    xml['w'].rStyle({ 'w:val' => 'PageNumber' })
+                    unless document.page_number_label_size.nil?
+                      xml['w'].sz({ 'w:val'  => document.page_number_label_size })
+                    end
+                  end
+                  xml['w'].t({ 'xml:space' => 'preserve' }) do
+                    xml.text document.page_number_info
+                  end
+                end
+              end
+
+
               #
               xml['w'].r run_options do
                 xml['w'].rPr do
