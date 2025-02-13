@@ -62,7 +62,7 @@ module Caracal
                     end
                   end
                   xml['w'].t({ 'xml:space' => 'preserve' }) do
-                    xml.text "#{ document.page_number_total_label } "
+                    xml.text "#{ document.page_number_total_label }"
                   end
                 end
 
