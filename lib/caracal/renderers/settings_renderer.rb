@@ -20,6 +20,7 @@ module Caracal
             xml['w'].displayBackgroundShape({ 'w:val' => '1' })
             xml['w'].defaultTabStop({ 'w:val' => '720' })
             xml['w'].compat do
+              xml['w'].doNotExpandShiftReturn()
               xml['w'].compatSetting({ 'w:val' => '14', 'w:name' => 'compatibilityMode', 'w:uri' => 'http://schemas.microsoft.com/office/word' })
             end
           end
