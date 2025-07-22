@@ -1,5 +1,6 @@
 require 'caracal/core/models/base_model'
 require 'caracal/core/models/bookmark_model'
+require 'caracal/core/models/inline_image_model'
 require 'caracal/core/models/link_model'
 require 'caracal/core/models/text_model'
 require 'caracal/errors'
@@ -140,6 +141,20 @@ module Caracal
         def br
           model = Caracal::Core::Models::LineBreakModel.new()
           runs << model
+          model
+        end
+
+        # .img
+        def img(*args, &block)
+          options = Caracal::Utilities.extract_options!(args)
+          options.merge!({ url: args.first }) if args.first
+          
+          model = Caracal::Core::Models::InlineImageModel.new(options, &block)
+          if model.valid?
+            runs << model
+          else
+            raise Caracal::Errors::InvalidModelError, 'Inline images require a URL and positive size values.'
+          end
           model
         end
 
